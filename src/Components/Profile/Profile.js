@@ -1,14 +1,12 @@
 import React from "react";
-import logo from "../../assets/logo_inv.png";
+import './Profile.css';
+import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
     return (
-        <main className="col-8 col-md-9 main">
+        <main className="col-8 col-md-9 main shadow-sm p-3 mb-5 bg-white rounded">
             <div>Ava + discription</div>
-            <div>My posts</div>
-            <div>New post</div>
-            <div>Post 1</div>
-            <div>Post 2</div>
+           <MyPosts/>
         </main>
     )
 };

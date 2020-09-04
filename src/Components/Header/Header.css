@@ -1,0 +1,25 @@
+.navbar {
+    background-color: #00a2f9;
+    border-bottom-left-radius: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+
+.navbar-brand img {
+    height: 50px;
+    margin-right: 5px;
+}
+
+@media (max-width: 750px) {
+    .navbar-brand img {
+        height: 30px;
+        margin-right: 5px;
+    }
+}

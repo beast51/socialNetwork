@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo_inv.png";
+import './Navbar.css';
 
 const Navbar = () => {
     const menu = ['Profile', 'Messages', 'News', 'Music', 'Settings'];
