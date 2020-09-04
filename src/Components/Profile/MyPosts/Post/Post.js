@@ -14,7 +14,7 @@ const Post = (props) => {
                             <h6>Юрий</h6>
                         </div>
                         <div className="col-4 col-md-2 col-lg-2 text-center pt-1">
-                            <a href="">
+                            <a href="/">
                                 <img className="card-img_like " src={like} alt="like"/>
                                 <h6>{props.likesCount}</h6>
                             </a>

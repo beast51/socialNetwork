@@ -1,11 +1,11 @@
 import React from "react";
 
-const Dialogs = (props) => {
+const Settings = (props) => {
     return (
         <main className="col-8 col-md-9 main shadow-sm p-3 mb-5 bg-white rounded">
-            Dialogs
+            Settings
         </main>
     )
 };
 
-export default Dialogs;
+export default Settings;
