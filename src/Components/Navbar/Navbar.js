@@ -1,5 +1,6 @@
 import React from "react";
 import './Navbar.css';
+import {NavLink} from "react-router-dom";
 
 const Navbar = () => {
     const menu = {'Profile': '/profile', 'Messages': '/dialogs', 'News': '/news', 'Music': '/music', 'Settings': '/settings'};
@@ -7,7 +8,7 @@ const Navbar = () => {
         <aside className="col-3 col-md-2 aside ">
             <ul>
                 {Object.keys(menu).map((item, index) =>
-                    <li key={index}><a href={menu[item]}>{item}</a></li>
+                    <li key={index}><NavLink to={menu[item]}>{item}</NavLink></li>
                 )}
             </ul>
         </aside>

@@ -1,11 +1,8 @@
-.post__img img{
-    width: 40px;
-}
-
-.card-img_round {
-    border-radius: 50%;
-}
+/*.card-img_round {*/
+/*    border-radius: 50%;*/
+/*    width: 4vh;*/
+/*}*/
 
 .card-img_like {
-    width: 40px;
+    width: 4vh;
 }

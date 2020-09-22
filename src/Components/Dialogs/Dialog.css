@@ -1,0 +1,14 @@
+.active {
+    font-weight: bold;
+    color: #0058da !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+a {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}

@@ -7,16 +7,16 @@ const Post = (props) => {
     return (
         <div className="post">
             <div className="card mb-3 w-90 mt-3 shadow-sm">
-                <div className="card-header card-header_post">
-                    <div className="row justify-content-between">
-                        <div className="post__img col-5 col-md-2 col-lg-2 text-center">
+                <div className="card-header">
+                    <div className="row">
+                        <div className="col-6 text-left">
                             <img src={avatar} className="card-img card-img_round" alt="avatar"/>
-                            <h6>Юрий</h6>
+                            <span>Юрий</span>
                         </div>
-                        <div className="col-4 col-md-2 col-lg-2 text-center pt-1">
+                        <div className="col-6 text-right">
                             <a href="/">
                                 <img className="card-img_like " src={like} alt="like"/>
-                                <h6>{props.likesCount}</h6>
+                                <span>{props.likesCount}</span>
                             </a>
                         </div>
                     </div>

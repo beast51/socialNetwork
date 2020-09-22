@@ -10,7 +10,15 @@ aside a {
     text-decoration: none !important;
     color: #00a2f9 !important;
     font-size: 1.5vmax;
+    display: block;
+    width: 100%;
 }
+
+aside a.active {
+    color: #0058da !important;
+    font-weight: bold;
+}
+
 aside a:hover {
     text-decoration: none !important;
     color: #0058da !important;
@@ -24,10 +32,6 @@ aside li {
     list-style-type: none;
     padding-right: 15px;
     margin-bottom: 10px;
-}
-aside li a {
-    display: block;
-    width: 100%;
 }
 
 @media (max-width: 750px) {
