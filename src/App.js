@@ -17,10 +17,9 @@ function App(props) {
             <div className="container-fluid">
                 <div className="row">
                     <Navbar/>
-                    <Route path="/profile" render={() => <Profile state={props.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>}/>
+                    <Route path="/profile" render={() => <Profile state={props.profilePage} dispatch={props.dispatch}/>}/>
                     <Route path="/dialogs" render={() => <Dialogs state={props.dialogsPage}
-                                                                  updateNewMessageText={props.updateNewMessageText}
-                                                                  addMessage={props.addMessage}/>}/>
+                                                                  dispatch={props.dispatch}/>}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
