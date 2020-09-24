@@ -2,21 +2,25 @@ import React from "react";
 import './Dialog.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialog-reducer";
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
-    let messagesElements = props.state.messages.map(m => <Message message={m.message} align={m.align} key={m.id}/>);
+    let state = props.dialogsPage;
+
+    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>);
+    let messagesElements = state.messages.map(m => <Message message={m.message} align={m.align} key={m.id}/>);
+
     let addMessage = (e) => {
         e.preventDefault();
-        props.dispatch(addMessageActionCreator());
+        props.addMessage();
+
     };
 
     let onMessageChange = (e) => {
         let newMessageText = e.target.value;
-        props.dispatch(updateNewMessageTextActionCreator(newMessageText));
+        props.updateNewMessageText(newMessageText);
     };
+
     return (
         <main className="col-8 col-md-9 main shadow-sm p-3 mb-5 bg-white rounded">
             <div className="container-fluid">
@@ -33,7 +37,7 @@ const Dialogs = (props) => {
                                        placeholder="Write message..."
                                        aria-label="Recipient's username"
                                        aria-describedby="button-addon2"
-                                       value={props.state.newMessageText}
+                                       value={props.dialogsPage.newMessageText}
                                        onChange={onMessageChange}/>
                                 <div className="input-group-append">
                                     <button className="btn btn-outline-primary"

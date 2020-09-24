@@ -9,7 +9,8 @@ import {BrowserRouter} from "react-router-dom";
 export let rerenderEntireTree = (state) => {
     render(
         <BrowserRouter>
-            <App dialogsPage={state.dialogsPage}
+            <App store={store}
+                 dialogsPage={state.dialogsPage}
                  profilePage={state.profilePage}
                  dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter>,
