@@ -9,7 +9,6 @@ import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 
-
 function App(props) {
     return (
         <div>
@@ -17,7 +16,8 @@ function App(props) {
             <div className="container-fluid">
                 <div className="row">
                     <Navbar/>
-                    <Route path="/profile" render={() => <Profile state={props.profilePage} dispatch={props.dispatch}/>}/>
+                    <Route path="/profile"
+                           render={() => <Profile state={props.profilePage} dispatch={props.dispatch}/>}/>
                     <Route path="/dialogs" render={() => <Dialogs state={props.dialogsPage}
                                                                   dispatch={props.dispatch}/>}/>
                     <Route path="/news" component={News}/>
