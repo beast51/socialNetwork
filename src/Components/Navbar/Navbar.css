@@ -34,6 +34,10 @@ aside li {
     margin-bottom: 10px;
 }
 
+a.navbar-brand {
+    width: 30% !important;
+}
+
 @media (max-width: 750px) {
     aside a {
         font-size: 2.5vmax;
