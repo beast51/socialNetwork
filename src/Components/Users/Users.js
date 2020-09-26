@@ -3,18 +3,11 @@ import avatar from '../../../src/assets/avatar.png';
 import * as axios from 'axios';
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props)
-        console.log('constructor')
-    }
-
     componentDidMount() {
-        console.log('didMount');
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount);
-                console.log(response.data.totalCount);
             });
     }
 
@@ -27,7 +20,6 @@ class Users extends React.Component {
     }
 
     render() {
-        console.log('render')
         let pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize);
         let pages = [];
         for (let i = 1; i <= pagesCount; i++) {
@@ -38,15 +30,11 @@ class Users extends React.Component {
 
         if (pagesCount - this.props.currentPage < 5) {
             pager = pages.slice(pagesCount - 9, pagesCount)
-
         } else if (this.props.currentPage >= 5) {
             pager = pages.slice(this.props.currentPage - 5, this.props.currentPage + 5)
-
         } else {
             pager = pages.slice(this.props.currentPage - 1, this.props.currentPage + 10)
-
         }
-
 
         return (
             <main className="col-8 col-md-9 main shadow-sm p-3 mb-5 bg-white rounded">
@@ -82,15 +70,15 @@ class Users extends React.Component {
 
                         <li className="page-item">
                             <span onClick={() => {
-                                 if (this.props.currentPage < pagesCount) {
-                                     this.onPageClick(this.props.currentPage + 1)
-                                 }
+                                if (this.props.currentPage < pagesCount) {
+                                    this.onPageClick(this.props.currentPage + 1)
+                                }
                             }} className="page-link" href="...">&gt;</span>
                         </li>
                         <li className="page-item">
                             <span onClick={() => {
                                 if (this.props.currentPage < pagesCount) {
-                                this.onPageClick(pagesCount)
+                                    this.onPageClick(pagesCount)
                                 }
                             }} className="page-link" href="...">&raquo;</span>
                         </li>
