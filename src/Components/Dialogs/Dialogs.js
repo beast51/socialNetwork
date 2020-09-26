@@ -13,7 +13,6 @@ const Dialogs = (props) => {
     let addMessage = (e) => {
         e.preventDefault();
         props.addMessage();
-
     };
 
     let onMessageChange = (e) => {
