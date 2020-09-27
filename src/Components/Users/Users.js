@@ -83,19 +83,21 @@ let Users = (props) => {
                         return (
                             <div key={u.id} className="col mb-4">
                                 <div className="card h-100">
-                                    <div className="w-50 m-auto">
+                                    <div className="w-100 mt-0 mb-2">
                                         <img src={u.photos.small ? u.photos.small : avatar} className="card-img-top"
                                              alt="avatar"/>
                                     </div>
-                                    <div className="card-body text-center">
+                                    <div className=" text-center">
                                         <h6 className="card-title">{u.name}</h6>
                                     </div>
-                                    {u.followed
-                                        ? <button className="btn btn-light"
-                                                  onClick={() => props.unfollow(u.id)}>Unfollow</button>
-                                        : <button className="btn btn-light"
-                                                  onClick={() => props.follow(u.id)}>Follow</button>
-                                    }
+
+                                        {u.followed
+                                            ? <button className="btn btn-light "
+                                                      onClick={() => props.unfollow(u.id)}>Unfollow</button>
+                                            : <button className="btn btn-light "
+                                                      onClick={() => props.follow(u.id)}>Follow</button>
+                                        }
+
                                 </div>
                             </div>
                         )

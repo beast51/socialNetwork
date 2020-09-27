@@ -1,3 +1,7 @@
 span[href] {
     cursor: pointer;
 }
+
+.card-title {
+    min-height: 4vh;
+}
