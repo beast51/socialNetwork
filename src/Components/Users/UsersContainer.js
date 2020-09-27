@@ -3,7 +3,14 @@ import {connect} from "react-redux";
 import * as axios from "axios";
 
 import Users from "./Users";
-import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "../../redux/users-reducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setIsFetchingAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    unfollowAC
+} from "../../redux/users-reducer";
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
@@ -15,21 +22,25 @@ class UsersAPIComponent extends React.Component {
     }
 
     onPageClick = (currentPage) => {
+        this.props.setIsFetching(true);
         this.props.setCurrentPage(currentPage);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items)
+                this.props.setIsFetching(false);
             });
     };
 
     render() {
-        return <Users pageSize= {this.props.pageSize}
-                      totalCount= {this.props.totalCount}
-                      currentPage= {this.props.currentPage}
-                      users= {this.props.users}
-                      follow= {this.props.follow}
-                      unfollow= {this.props.unfollow}
-                      onPageClick= {this.onPageClick}
+        return <Users pageSize={this.props.pageSize}
+                      totalCount={this.props.totalCount}
+                      currentPage={this.props.currentPage}
+                      users={this.props.users}
+                      follow={this.props.follow}
+                      unfollow={this.props.unfollow}
+                      onPageClick={this.onPageClick}
+                      isFetching={this.props.isFetching}
+                      isButtonDisabled={this.props.isButtonDisabled}
         />
     }
 }
@@ -39,7 +50,9 @@ const mapStateToProps = (state) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalCount: state.usersPage.totalCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
+        isButtonDisabled: state.usersPage.isButtonDisabled
     }
 };
 
@@ -59,6 +72,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         setTotalUsersCount: (totalCount) => {
             dispatch(setTotalUsersCountAC(totalCount))
+        },
+        setIsFetching: (isFetching) => {
+            dispatch(setIsFetchingAC(isFetching))
         }
     }
 };

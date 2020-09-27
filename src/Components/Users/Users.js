@@ -30,18 +30,22 @@ let Users = (props) => {
             <nav aria-label="search users page">
                 <ul className="pagination justify-content-center pagination-sm">
                     <li className="page-item">
-                            <span onClick={() => {
-                                if (props.currentPage > 1) {
-                                    props.onPageClick(1)
-                                }
-                            }} className="page-link" href="#">&laquo;</span>
+                        <button onClick={() => {
+                            if (props.currentPage > 1) {
+                                props.onPageClick(1)
+                            }
+                        }} className="page-link" href="#">{props.isFetching ?
+                            <span className="spinner-border spinner-border-sm" role="status"
+                                  aria-hidden="true"> </span> : <span>&laquo;</span>}</button>
                     </li>
                     <li className="page-item">
-                            <span onClick={() => {
-                                if (props.currentPage > 1) {
-                                    props.onPageClick(props.currentPage - 1)
-                                }
-                            }} className="page-link" href="#">&lt;</span>
+                        <button onClick={() => {
+                            if (props.currentPage > 1) {
+                                props.onPageClick(props.currentPage - 1)
+                            }
+                        }} className=" page-link" href="#">{props.isFetching ?
+                            <span className="spinner-border spinner-border-sm" role="status"
+                                  aria-hidden="true"> </span> : <span>&lt;</span>}</button>
                     </li>
 
                     {
@@ -49,35 +53,42 @@ let Users = (props) => {
                             return (
                                 <li key={p}
                                     className={props.currentPage === p ? "page-item active" : "page-item"}>
-                                        <span onClick={() => {
-                                            props.onPageClick(p)
-                                        }} className="page-link" href="#">{p}</span>
+                                    <button onClick={() => {
+                                        props.onPageClick(p)
+                                    }} className="page-link" href="#">{props.isFetching ?
+                                        <span className="spinner-border spinner-border-sm" role="status"
+                                              aria-hidden="true"> </span> : <span>{p}</span>}</button>
                                 </li>
                             )
                         })
                     }
 
                     <li className="page-item">
-                            <span onClick={() => {
-                                if (props.currentPage < pagesCount) {
-                                    props.onPageClick(props.currentPage + 1)
-                                }
-                            }}
-                                  className="page-link"
-                                  href="...">&gt;
-                            </span>
+                        <button onClick={() => {
+                            if (props.currentPage < pagesCount) {
+                                props.onPageClick(props.currentPage + 1)
+                            }
+                        }}
+                                className="page-link"
+                                href="...">{props.isFetching ?
+                            <span className="spinner-border spinner-border-sm" role="status"
+                                  aria-hidden="true"> </span> : <span>&gt;</span>}
+                        </button>
                     </li>
                     <li className="page-item">
-                            <span onClick={() => {
-                                if (props.currentPage < pagesCount) {
-                                    props.onPageClick(pagesCount)
-                                }
-                            }} className="page-link" href="...">&raquo;</span>
+                        <button onClick={() => {
+                            if (props.currentPage < pagesCount) {
+                                props.onPageClick(pagesCount)
+                            }
+                        }} className="page-link" href="...">{props.isFetching ?
+                            <span className="spinner-border spinner-border-sm" role="status"
+                                  aria-hidden="true"> </span> : <span>&raquo;</span>}</button>
                     </li>
                 </ul>
             </nav>
 
             <div className="row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6">
+
                 {
                     props.users.map(u => {
                         return (
@@ -91,12 +102,12 @@ let Users = (props) => {
                                         <h6 className="card-title">{u.name}</h6>
                                     </div>
 
-                                        {u.followed
-                                            ? <button className="btn btn-light "
-                                                      onClick={() => props.unfollow(u.id)}>Unfollow</button>
-                                            : <button className="btn btn-light "
-                                                      onClick={() => props.follow(u.id)}>Follow</button>
-                                        }
+                                    {u.followed
+                                        ? <button className="btn btn-light "
+                                                  onClick={() => props.unfollow(u.id)}>Unfollow</button>
+                                        : <button className="btn btn-light "
+                                                  onClick={() => props.follow(u.id)}>Follow</button>
+                                    }
 
                                 </div>
                             </div>
