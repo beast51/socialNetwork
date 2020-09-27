@@ -1,5 +1,6 @@
 import React from "react";
 import avatar from '../../../src/assets/avatar.png';
+import './Users.css';
 
 let Users = (props) => {
 
@@ -12,29 +13,35 @@ let Users = (props) => {
     let pager = [];
     if (pagesCount - props.currentPage < 5) {
         pager = pages.slice(pagesCount - 9, pagesCount)
+    } else if (props.currentPage === 2) {
+        pager = pages.slice(0, props.currentPage + 7)
+    } else if (props.currentPage === 3) {
+        pager = pages.slice(0, props.currentPage + 6)
+    } else if (props.currentPage === 4) {
+        pager = pages.slice(0, props.currentPage + 5)
     } else if (props.currentPage >= 5) {
-        pager = pages.slice(props.currentPage - 5, props.currentPage + 5)
+        pager = pages.slice(props.currentPage - 5, props.currentPage + 4)
     } else {
-        pager = pages.slice(props.currentPage - 1, props.currentPage + 10)
+        pager = pages.slice(props.currentPage - 1, props.currentPage + 8)
     }
 
     return (
         <main className="col-8 col-md-9 main shadow-sm p-3 mb-5 bg-white rounded">
-            <nav aria-label="pagination">
+            <nav aria-label="search users page">
                 <ul className="pagination justify-content-center pagination-sm">
                     <li className="page-item">
                             <span onClick={() => {
                                 if (props.currentPage > 1) {
                                     props.onPageClick(1)
                                 }
-                            }} className="page-link">&laquo;</span>
+                            }} className="page-link" href="#">&laquo;</span>
                     </li>
                     <li className="page-item">
                             <span onClick={() => {
                                 if (props.currentPage > 1) {
                                     props.onPageClick(props.currentPage - 1)
                                 }
-                            }} className="page-link">&lt;</span>
+                            }} className="page-link" href="#">&lt;</span>
                     </li>
 
                     {
@@ -55,7 +62,10 @@ let Users = (props) => {
                                 if (props.currentPage < pagesCount) {
                                     props.onPageClick(props.currentPage + 1)
                                 }
-                            }} className="page-link" href="...">&gt;</span>
+                            }}
+                                  className="page-link"
+                                  href="...">&gt;
+                            </span>
                     </li>
                     <li className="page-item">
                             <span onClick={() => {
