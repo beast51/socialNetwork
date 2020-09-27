@@ -11,7 +11,7 @@ class Users extends React.Component {
             });
     }
 
-    onPageClick(currentPage) {
+    onPageClick = (currentPage) => {
         this.props.setCurrentPage(currentPage);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`)
             .then(response => {
@@ -20,6 +20,7 @@ class Users extends React.Component {
     }
 
     render() {
+        console.log("git");
         let pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize);
         let pages = [];
         for (let i = 1; i <= pagesCount; i++) {
