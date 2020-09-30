@@ -1,6 +1,9 @@
 import React from "react";
-import avatar from '../../../src/assets/avatar.png';
+import avatar from '../../../src/assets/avatar.jpg';
 import './Users.css';
+import Preloader from "../common/Preloader/Preloader";
+import {NavLink} from "react-router-dom";
+
 
 let Users = (props) => {
 
@@ -34,18 +37,16 @@ let Users = (props) => {
                             if (props.currentPage > 1) {
                                 props.onPageClick(1)
                             }
-                        }} className="page-link" href="#">{props.isFetching ?
-                            <span className="spinner-border spinner-border-sm" role="status"
-                                  aria-hidden="true"> </span> : <span>&laquo;</span>}</button>
+                        }} className="page-link" >{props.isFetching ?  <Preloader /> : <span>&laquo;</span>}
+                        </button>
                     </li>
                     <li className="page-item">
                         <button onClick={() => {
                             if (props.currentPage > 1) {
                                 props.onPageClick(props.currentPage - 1)
                             }
-                        }} className=" page-link" href="#">{props.isFetching ?
-                            <span className="spinner-border spinner-border-sm" role="status"
-                                  aria-hidden="true"> </span> : <span>&lt;</span>}</button>
+                        }} className=" page-link" >{props.isFetching ?
+                            <Preloader /> : <span>&lt;</span>}</button>
                     </li>
 
                     {
@@ -55,9 +56,8 @@ let Users = (props) => {
                                     className={props.currentPage === p ? "page-item active" : "page-item"}>
                                     <button onClick={() => {
                                         props.onPageClick(p)
-                                    }} className="page-link" href="#">{props.isFetching ?
-                                        <span className="spinner-border spinner-border-sm" role="status"
-                                              aria-hidden="true"> </span> : <span>{p}</span>}</button>
+                                    }} className="page-link" >{props.isFetching ?
+                                        <Preloader /> : <span>{p}</span>}</button>
                                 </li>
                             )
                         })
@@ -70,9 +70,8 @@ let Users = (props) => {
                             }
                         }}
                                 className="page-link"
-                                href="...">{props.isFetching ?
-                            <span className="spinner-border spinner-border-sm" role="status"
-                                  aria-hidden="true"> </span> : <span>&gt;</span>}
+                                >{props.isFetching ?
+                            <Preloader /> : <span>&gt;</span>}
                         </button>
                     </li>
                     <li className="page-item">
@@ -80,9 +79,8 @@ let Users = (props) => {
                             if (props.currentPage < pagesCount) {
                                 props.onPageClick(pagesCount)
                             }
-                        }} className="page-link" href="...">{props.isFetching ?
-                            <span className="spinner-border spinner-border-sm" role="status"
-                                  aria-hidden="true"> </span> : <span>&raquo;</span>}</button>
+                        }} className="page-link">{props.isFetching ?
+                            <Preloader /> : <span>&raquo;</span>}</button>
                     </li>
                 </ul>
             </nav>
@@ -95,8 +93,11 @@ let Users = (props) => {
                             <div key={u.id} className="col mb-4">
                                 <div className="card h-100">
                                     <div className="w-100 mt-0 mb-2">
-                                        <img src={u.photos.small ? u.photos.small : avatar} className="card-img-top"
-                                             alt="avatar"/>
+                                        <NavLink to={`/profile/${u.id}`}>
+                                            <img src={u.photos.small ? u.photos.large : avatar} className="card-img-top"
+                                                 alt="avatar"/>
+                                        </NavLink>
+
                                     </div>
                                     <div className=" text-center">
                                         <h6 className="card-title">{u.name}</h6>
