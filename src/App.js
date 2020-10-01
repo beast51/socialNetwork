@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
 import {Route} from "react-router-dom";
 import News from "./Components/News/News";
@@ -9,12 +8,13 @@ import Settings from "./Components/Settings/Settings";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 
 function App(props) {
     return (
         <div>
-            <Header/>
+            <HeaderContainer/>
             <div className="container-fluid">
                 <div className="row">
                     <Navbar/>
