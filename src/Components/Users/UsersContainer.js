@@ -1,7 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import * as axios from "axios";
-
 import Users from "./Users";
 import {
     follow,
@@ -11,24 +9,23 @@ import {
     setUsers,
     unfollow
 } from "../../redux/users-reducer";
+import {usersAPI} from "../../api/api";
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
-            });
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items);
+            this.props.setTotalUsersCount(data.totalCount);
+        });
     }
 
     onPageClick = (currentPage) => {
         this.props.setIsFetching(true);
         this.props.setCurrentPage(currentPage);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setIsFetching(false);
-            });
+        usersAPI.getUsers(currentPage, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items);
+            this.props.setIsFetching(false);
+        });
     };
 
     render() {
@@ -47,7 +44,7 @@ class UsersAPIComponent extends React.Component {
 
 const mapStateToProps = (state) => {
 
-        return {
+    return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalCount: state.usersPage.totalCount,
@@ -81,6 +78,7 @@ const mapStateToProps = (state) => {
 // };
 
 const UsersContainer = connect(mapStateToProps, {
-    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching})(UsersAPIComponent);
+    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching
+})(UsersAPIComponent);
 
 export default UsersContainer;

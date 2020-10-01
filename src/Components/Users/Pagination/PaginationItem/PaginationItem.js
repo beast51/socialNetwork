@@ -4,7 +4,7 @@ import React from "react";
 const PaginationItem = (props) => {
 
     return (
-        <li className={props.className} >
+        <li className={props.className}>
             <button onClick={() => {
                 if (props.condition) {
                     props.onPageClick(props.currentPage)

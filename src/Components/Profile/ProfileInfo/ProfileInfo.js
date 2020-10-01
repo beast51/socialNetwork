@@ -5,7 +5,7 @@ import lookingForAJobPhoto from "../../../assets/lookingforajob1.jpg";
 import iHaveAJobPhoto from "../../../assets/ihaveajob1.jpg";
 
 const ProfileInfo = (props) => {
-        if (!props.userProfile) {
+    if (!props.userProfile) {
         return <Preloader/>
     }
 
@@ -21,7 +21,8 @@ const ProfileInfo = (props) => {
             <div className="row mt-3">
                 <div className="col-md-6 col-12 text-center mb-3">
                     <h5>About work:</h5>
-                    <img className="w-50 mb-2" src={props.userProfile.lookingForAJob === true ? lookingForAJobPhoto : iHaveAJobPhoto} alt=""/>
+                    <img className="w-50 mb-2"
+                         src={props.userProfile.lookingForAJob === true ? lookingForAJobPhoto : iHaveAJobPhoto} alt=""/>
                     <h6>{props.userProfile.lookingForAJobDescription}</h6>
                 </div>
                 <div className="col-md-6 col-12 text-center">
