@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {
     follow,
-    setCurrentPage,
+    setCurrentPage, setIsButtonDisabled,
     setIsFetching,
     setTotalUsersCount,
     setUsers,
@@ -38,6 +38,7 @@ class UsersAPIComponent extends React.Component {
                       onPageClick={this.onPageClick}
                       isFetching={this.props.isFetching}
                       isButtonDisabled={this.props.isButtonDisabled}
+                      setIsButtonDisabled={this.props.setIsButtonDisabled}
         />
     }
 }
@@ -78,7 +79,7 @@ const mapStateToProps = (state) => {
 // };
 
 const UsersContainer = connect(mapStateToProps, {
-    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching
+    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching, setIsButtonDisabled
 })(UsersAPIComponent);
 
 export default UsersContainer;

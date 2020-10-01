@@ -8,7 +8,6 @@ import {usersAPI} from "../../api/api";
 
 let Users = (props) => {
 
-
     return (
         <main className="col-8 col-md-9 main shadow-sm p-3 mb-5 bg-white rounded">
 
@@ -16,6 +15,7 @@ let Users = (props) => {
 
             <div className="row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6">
                 {props.users.map(u => {
+
                     return (
                         <div key={u.id} className="col mb-4">
                             <div className="card h-100">
@@ -30,23 +30,33 @@ let Users = (props) => {
                                 </div>
                                 {u.followed
                                     ? <button className="btn btn-light "
+                                              disabled={props.isButtonDisabled.some(id => id === u.id)}
                                               onClick={() => {
+                                                  props.setIsButtonDisabled(true, u.id);
                                                   usersAPI.unfollowUser(u.id)
                                                       .then(data => {
                                                           if (data.resultCode === 0) {
-                                                              props.unfollow(u.id)
+                                                              props.unfollow(u.id);
+
                                                           }
+                                                          props.setIsButtonDisabled(false, u.id);
                                                       });
+
                                               }}>Unfollow</button>
 
                                     : <button className="btn btn-light "
+                                              disabled={props.isButtonDisabled.some(id => id === u.id)}
                                               onClick={() => {
+                                                  props.setIsButtonDisabled(true, u.id);
                                                   usersAPI.followUser(u.id)
                                                       .then(data => {
                                                           if (data.resultCode === 0) {
-                                                              props.follow(u.id)
+                                                              props.follow(u.id);
+
                                                           }
                                                       });
+                                                  props.setIsButtonDisabled(false, u.id);
+
                                               }}>Follow</button>
                                 }
                             </div>
