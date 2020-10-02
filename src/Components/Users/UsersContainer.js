@@ -2,30 +2,21 @@ import React from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
-    follow,
+    follow, getUsers, getUsersOnPageClick,
     setCurrentPage, setIsButtonDisabled,
     setIsFetching,
     setTotalUsersCount,
     setUsers,
     unfollow
 } from "../../redux/users-reducer";
-import {usersAPI} from "../../api/api";
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items);
-            this.props.setTotalUsersCount(data.totalCount);
-        });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageClick = (currentPage) => {
-        this.props.setIsFetching(true);
-        this.props.setCurrentPage(currentPage);
-        usersAPI.getUsers(currentPage, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items);
-            this.props.setIsFetching(false);
-        });
+        this.props.getUsersOnPageClick(currentPage, this.props.pageSize);
     };
 
     render() {
@@ -79,7 +70,9 @@ const mapStateToProps = (state) => {
 // };
 
 const UsersContainer = connect(mapStateToProps, {
-    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching, setIsButtonDisabled
+    setUsers, setCurrentPage,
+    setTotalUsersCount, setIsFetching, setIsButtonDisabled,
+    getUsers, getUsersOnPageClick, follow, unfollow
 })(UsersAPIComponent);
 
 export default UsersContainer;

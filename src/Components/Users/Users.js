@@ -3,8 +3,6 @@ import avatar from '../../../src/assets/avatar.jpg';
 import './Users.css';
 import {NavLink} from "react-router-dom";
 import Pagination from "./Pagination/Pagination";
-import {usersAPI} from "../../api/api";
-
 
 let Users = (props) => {
 
@@ -31,33 +29,11 @@ let Users = (props) => {
                                 {u.followed
                                     ? <button className="btn btn-light "
                                               disabled={props.isButtonDisabled.some(id => id === u.id)}
-                                              onClick={() => {
-                                                  props.setIsButtonDisabled(true, u.id);
-                                                  usersAPI.unfollowUser(u.id)
-                                                      .then(data => {
-                                                          if (data.resultCode === 0) {
-                                                              props.unfollow(u.id);
-
-                                                          }
-                                                          props.setIsButtonDisabled(false, u.id);
-                                                      });
-
-                                              }}>Unfollow</button>
+                                              onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
 
                                     : <button className="btn btn-light "
                                               disabled={props.isButtonDisabled.some(id => id === u.id)}
-                                              onClick={() => {
-                                                  props.setIsButtonDisabled(true, u.id);
-                                                  usersAPI.followUser(u.id)
-                                                      .then(data => {
-                                                          if (data.resultCode === 0) {
-                                                              props.follow(u.id);
-
-                                                          }
-                                                      });
-                                                  props.setIsButtonDisabled(false, u.id);
-
-                                              }}>Follow</button>
+                                              onClick={() => {props.follow(u.id)}}>Follow</button>
                                 }
                             </div>
                         </div>

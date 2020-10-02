@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -71,12 +73,67 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
-export const follow = (userId) => ({type: FOLLOW, userId});
-export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const followSucces = (userId) => ({type: FOLLOW, userId});
+export const unfollowSucces = (userId) => ({type: UNFOLLOW, userId});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalCount) => ({type: SET_TOTAL_USERS_COUNT, totalCount});
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 export const setIsButtonDisabled = (isFetching, userId) => ({type: SET_IS_BUTTON_DISABLED, isFetching, userId});
+
+export const getUsers = (currentPage, pageSize) => {
+    return (
+        (dispatch) => {
+            usersAPI.getUsers(currentPage, pageSize).then(data => {
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUsersCount(data.totalCount));
+            });
+        }
+    )
+} ;
+
+export const getUsersOnPageClick = (currentPage, pageSize) => {
+    return (
+        (dispatch) => {
+            dispatch(setIsFetching(true));
+            dispatch(setCurrentPage(currentPage));
+            usersAPI.getUsers(currentPage, pageSize).then(data => {
+                dispatch(setUsers(data.items));
+                dispatch(setIsFetching(false));
+            });
+        }
+    )
+};
+
+export const follow = (userId) => {
+  return (
+      (dispatch) => {
+          dispatch(setIsButtonDisabled(true, userId));
+          usersAPI.followUser(userId)
+              .then(data => {
+                  if (data.resultCode === 0) {
+                      dispatch(followSucces(userId));
+                  }
+              });
+          dispatch(setIsButtonDisabled(false, userId));
+      }
+  )
+};
+
+export const unfollow = (userId) => {
+    return (
+        (dispatch) => {
+            dispatch(setIsButtonDisabled(true, userId));
+            usersAPI.unfollowUser(userId)
+                .then(data => {
+                    if (data.resultCode === 0) {
+                        dispatch(unfollowSucces(userId));
+                    }
+                });
+            dispatch(setIsButtonDisabled(false, userId));
+        }
+    )
+};
+
 
 export default usersReducer;
