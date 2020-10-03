@@ -3,17 +3,21 @@ import './ProfileInfo.css';
 import Preloader from "../../common/Preloader/Preloader";
 import lookingForAJobPhoto from "../../../assets/lookingforajob1.jpg";
 import iHaveAJobPhoto from "../../../assets/ihaveajob1.jpg";
+import avatar from './../../../assets/avatar.jpg'
+
 
 const ProfileInfo = (props) => {
     if (!props.userProfile) {
         return <Preloader/>
     }
 
+
+
     return (
         <div className="container mb-5">
             <div className="row justify-content-center ">
                 <div className="text-center">
-                    <img className="rounded w-50 mb-3" src={props.userProfile.photos.large} alt=""/>
+                    <img className="rounded w-50 mb-3" src={props.userProfile.photos.large ? props.userProfile.photos.large : avatar} alt=""/>
                     <h2>{props.userProfile.fullName}</h2>
                     <h6 className="">{props.userProfile.aboutMe}</h6>
                 </div>

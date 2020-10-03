@@ -9,6 +9,8 @@ import {
     setUsers,
     unfollow
 } from "../../redux/users-reducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
@@ -69,10 +71,12 @@ const mapStateToProps = (state) => {
 //     }
 // };
 
+let AuthRedirectComponent = withAuthRedirect(UsersAPIComponent);
+
 const UsersContainer = connect(mapStateToProps, {
     setUsers, setCurrentPage,
     setTotalUsersCount, setIsFetching, setIsButtonDisabled,
     getUsers, getUsersOnPageClick, follow, unfollow
-})(UsersAPIComponent);
+})(AuthRedirectComponent);
 
 export default UsersContainer;

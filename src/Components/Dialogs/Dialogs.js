@@ -2,6 +2,7 @@ import React from "react";
 import './Dialog.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {Redirect} from "react-router-dom";
 
 const Dialogs = (props) => {
 
@@ -20,6 +21,7 @@ const Dialogs = (props) => {
         props.updateNewMessageText(newMessageText);
     };
 
+    
     return (
         <main className="col-8 col-md-9 main shadow-sm p-3 mb-5 bg-white rounded">
             <div className="container-fluid">
