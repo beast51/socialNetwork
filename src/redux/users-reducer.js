@@ -114,8 +114,8 @@ export const follow = (userId) => {
                   if (data.resultCode === 0) {
                       dispatch(followSucces(userId));
                   }
+                  dispatch(setIsButtonDisabled(false, userId));
               });
-          dispatch(setIsButtonDisabled(false, userId));
       }
   )
 };
@@ -129,8 +129,8 @@ export const unfollow = (userId) => {
                     if (data.resultCode === 0) {
                         dispatch(unfollowSucces(userId));
                     }
+                    dispatch(setIsButtonDisabled(false, userId));
                 });
-            dispatch(setIsButtonDisabled(false, userId));
         }
     )
 };
