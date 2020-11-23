@@ -2,16 +2,10 @@ import React from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
-    follow, getUsers, getUsersOnPageClick,
-    setCurrentPage, setIsButtonDisabled,
-    setIsFetching,
-    setTotalUsersCount,
-    setUsers,
-    unfollow
+    follow, getUsers, getUsersOnPageClick, setCurrentPage, setIsButtonDisabled, unfollow
 } from "../../redux/users-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -38,7 +32,6 @@ class UsersContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -74,9 +67,7 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, {
-        setUsers, setCurrentPage,
-        setTotalUsersCount, setIsFetching, setIsButtonDisabled,
-        getUsers, getUsersOnPageClick, follow, unfollow
+        setCurrentPage, setIsButtonDisabled, getUsers, getUsersOnPageClick, follow, unfollow
     }),
     withAuthRedirect
 )(UsersContainer);
